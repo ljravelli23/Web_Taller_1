@@ -3,22 +3,22 @@ import gamesService from './games.service.js';
 const gamesController = {};
 
 gamesController.getAll = (req, res) => {
+    res.status(200).json([]);
     const games = gamesService.findAll();
     res.status(200).json(games);
-    res.status(200).json([]);
 };
 
 gamesController.getOne = (req, res) => {
     res.status(200).json({});
-    const game = gamesService.findById(req.params.id);
-    if (!game) {
-        return res.status(404).json({ message: "Juego no encontrado" });
-    }
-    res.status(200).json(game);
 };
 
 gamesController.create = (req, res) => {
     res.status(201).json({});
+    const newGame = gamesService.create(req.body);
+    res.status(201).json({
+        message: "Juego registrado exitosamente",
+        game: newGame
+    });
 };
 
 gamesController.update = (req, res) => {
@@ -26,6 +26,14 @@ gamesController.update = (req, res) => {
 };
 
 gamesController.delete = (req, res) => {
+    const deletedGame = gamesService.delete(req.params.id);
+    if (!deletedGame) {
+        return res.status(404).json({ message: "No se pudo eliminar, juego no encontrado" });
+    }
+    res.status(200).json({
+        message: "Juego retirado del catálogo",
+        game: deletedGame
+    });
     res.status(200).json({});
 };
 
