@@ -15,9 +15,9 @@ gamesService.create = (data) => {
     const newGame = {
         id: idCounter++,
         name: data.name,
-        minPlayers: data.minPlayers,
-        maxPlayers: data.maxPlayers,
-        avgDuration: data.avgDuration,
+        minPlayers: parseInt(data.minPlayers),
+        maxPlayers: parseInt(data.maxPlayers),
+        avgDuration: parseInt(data.avgDuration),
         acquisitionDate: data.acquisitionDate,
         status: data.status
     };

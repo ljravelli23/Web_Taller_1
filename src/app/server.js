@@ -7,7 +7,7 @@ import indexRouter from '../routes/index.routes.js';
 
 //  Settings
 const app = express();
-app.set("port", 3000);
+app.set("port", process.env.PORT || 3000);
 
 // Middleware
 app.use(morgan("dev"));
